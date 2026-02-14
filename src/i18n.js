@@ -140,7 +140,7 @@ const messages = {
       nameLast: 'Perez',
       title: 'Desarrollador Full-Stack',
       subtitle:
-        'Creando experiencias digitales elegantes con tecnologias web modernas. Apasionado por el codigo limpio, la arquitectura escalable y el diseno intuitivo.',
+        'Creando experiencias digitales elegantes con tecnologias web modernas. Apasionado por el codigo limpio, la arquitectura escalable y el diseño intuitivo.',
       primaryCta: 'Ver proyectos',
       secondaryCta: 'Hablemos'
     },
@@ -149,10 +149,10 @@ const messages = {
       titleA: 'Construyendo el',
       titleB: 'Futuro',
       body:
-        'Con mas de 5 anos de experiencia en desarrollo full-stack, me especializo en crear aplicaciones escalables que combinan backends potentes con frontends atractivos y responsivos. Creo en escribir codigo limpio y mantenible que resista el paso del tiempo.',
+        'Con mas de 5 años de experiencia en desarrollo full-stack, me especializo en crear aplicaciones escalables que combinan backends potentes con frontends atractivos y responsivos. Creo en escribir codigo limpio y mantenible que resista el paso del tiempo.',
       stats: {
         projects: 'Proyectos',
-        years: 'Anos Exp',
+        years: 'Años Exp',
         clients: 'Clientes'
       },
       code: {
