@@ -1,13 +1,56 @@
 <script setup>
+import { computed, ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import ProjectCard from './components/ProjectCard.vue'
 import TechItem from './components/TechItem.vue'
 import StatCard from './components/StatCard.vue'
 
-const stats = [
-  { value: '50+', label: 'Projects' },
-  { value: '5+', label: 'Years Exp' },
-  { value: '30+', label: 'Clients' }
+const { t, locale } = useI18n()
+
+const getStoredTheme = () => {
+  try {
+    return localStorage.getItem('preferredTheme') || 'medium'
+  } catch {
+    return 'medium'
+  }
+}
+
+const theme = ref(getStoredTheme())
+
+onMounted(() => {
+  document.documentElement.setAttribute('data-theme', theme.value)
+})
+
+const setTheme = (newTheme) => {
+  theme.value = newTheme
+  document.documentElement.setAttribute('data-theme', newTheme)
+  try {
+    localStorage.setItem('preferredTheme', newTheme)
+  } catch {
+    console.warn('localStorage not available')
+  }
+}
+
+const isActiveTheme = (th) => theme.value === th
+
+const themes = [
+  { code: 'light', label: 'Light', icon: 'sun', tooltip: 'Light' },
+  { code: 'medium', label: 'Medium', icon: 'half', tooltip: 'Medium' },
+  { code: 'dark', label: 'Dark', icon: 'moon', tooltip: 'Dark' }
 ]
+
+const statsBase = [
+  { value: '50+', labelKey: 'about.stats.projects' },
+  { value: '5+', labelKey: 'about.stats.years' },
+  { value: '30+', labelKey: 'about.stats.clients' }
+]
+
+const stats = computed(() =>
+  statsBase.map((item) => ({
+    value: item.value,
+    label: t(item.labelKey)
+  }))
+)
 
 const techStack = [
   {
@@ -48,11 +91,9 @@ const techStack = [
   }
 ]
 
-const projects = [
+const projectsBase = [
   {
-    title: 'CloudSync Dashboard',
-    description:
-      'Real-time analytics dashboard with WebSocket integration and dynamic data visualization.',
+    key: 'cloudsync',
     tags: ['Vue.js', 'Node.js'],
     gradientClass: 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20',
     iconClass: 'text-cyan-400/30',
@@ -64,9 +105,7 @@ const projects = [
     ]
   },
   {
-    title: 'FinTrack Mobile',
-    description:
-      'Personal finance tracking app with AI-powered spending insights and budget recommendations.',
+    key: 'fintrack',
     tags: ['React', 'Prisma'],
     gradientClass: 'bg-gradient-to-br from-purple-500/20 to-pink-600/20',
     iconClass: 'text-purple-400/30',
@@ -78,9 +117,7 @@ const projects = [
     ]
   },
   {
-    title: 'DevOps Pipeline',
-    description:
-      'Automated CI/CD pipeline with containerized microservices and zero-downtime deployments.',
+    key: 'devops',
     tags: ['Node.js', 'Docker'],
     gradientClass: 'bg-gradient-to-br from-emerald-500/20 to-teal-600/20',
     iconClass: 'text-emerald-400/30',
@@ -92,9 +129,7 @@ const projects = [
     ]
   },
   {
-    title: 'TeamFlow',
-    description:
-      'Collaborative project management platform with real-time updates and Kanban boards.',
+    key: 'teamflow',
     tags: ['Vue.js', 'GraphQL'],
     gradientClass: 'bg-gradient-to-br from-amber-500/20 to-orange-600/20',
     iconClass: 'text-amber-400/30',
@@ -106,9 +141,7 @@ const projects = [
     ]
   },
   {
-    title: 'HealthHub API',
-    description:
-      'RESTful health tracking API with OAuth2 authentication and comprehensive documentation.',
+    key: 'healthhub',
     tags: ['React', 'Node.js'],
     gradientClass: 'bg-gradient-to-br from-rose-500/20 to-red-600/20',
     iconClass: 'text-rose-400/30',
@@ -120,9 +153,7 @@ const projects = [
     ]
   },
   {
-    title: 'AI Code Reviewer',
-    description:
-      'Machine learning model that analyzes code quality and suggests improvements automatically.',
+    key: 'aiReviewer',
     tags: ['Python', 'TensorFlow'],
     gradientClass: 'bg-gradient-to-br from-indigo-500/20 to-violet-600/20',
     iconClass: 'text-indigo-400/30',
@@ -134,6 +165,35 @@ const projects = [
     ]
   }
 ]
+
+const projects = computed(() =>
+  projectsBase.map((project) => ({
+    ...project,
+    title: t(`projects.items.${project.key}.title`),
+    description: t(`projects.items.${project.key}.description`)
+  }))
+)
+
+const projectLabels = computed(() => ({
+  code: t('projects.cta.code'),
+  demo: t('projects.cta.demo')
+}))
+
+const locales = [
+  { code: 'en', label: 'EN' },
+  { code: 'es', label: 'ES' }
+]
+
+const setLocale = (code) => {
+  locale.value = code
+  try {
+    localStorage.setItem('preferredLocale', code)
+  } catch {
+    console.warn('localStorage not available')
+  }
+}
+
+const isActiveLocale = (code) => locale.value === code
 </script>
 
 <template>
@@ -154,20 +214,89 @@ const projects = [
       >
         <a href="#" class="text-xl font-bold gradient-text code-font">&lt;AP/&gt;</a>
         <div class="hidden md:flex items-center gap-8">
-          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">About</a>
-          <a href="#tech" class="nav-link text-gray-300 hover:text-white transition-colors">Tech Stack</a>
+          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">
+            {{ t('nav.about') }}
+          </a>
+          <a href="#tech" class="nav-link text-gray-300 hover:text-white transition-colors">
+            {{ t('nav.tech') }}
+          </a>
           <a
             href="#projects"
             class="nav-link text-gray-300 hover:text-white transition-colors"
           >
-            Projects
+            {{ t('nav.projects') }}
           </a>
           <a
             href="#contact"
             class="glow-btn bg-transparent border border-cyan-500/50 px-5 py-2 rounded-full text-cyan-400 hover:text-white"
           >
-            Contact
+            {{ t('nav.contact') }}
           </a>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+              <button
+                v-for="language in locales"
+                :key="language.code"
+                type="button"
+                class="text-xs px-3 py-1 rounded-full border transition-colors"
+                :class="
+                  isActiveLocale(language.code)
+                    ? 'border-cyan-400/60 text-cyan-300 bg-cyan-500/10'
+                    : 'border-gray-700 text-gray-400 hover:border-cyan-500'
+                "
+                @click="setLocale(language.code)"
+              >
+                {{ language.label }}
+              </button>
+            </div>
+            <div class="h-6 w-px bg-gray-700"></div>
+            <div class="flex items-center gap-2">
+              <button
+                v-for="th in themes"
+                :key="th.code"
+                type="button"
+                :title="th.tooltip"
+                class="w-8 h-8 flex items-center justify-center rounded-full border transition-colors hover:border-cyan-400"
+                :class="
+                  isActiveTheme(th.code)
+                    ? 'border-cyan-400/60 bg-cyan-500/10'
+                    : 'border-gray-700'
+                "
+                @click="setTheme(th.code)"
+              >
+                <!-- Sun icon for light theme -->
+                <svg v-if="th.icon === 'sun'" viewBox="0 0 24 24" class="w-6 h-6 stroke-current text-cyan-400" fill="none" stroke-width="1.5">
+                  <!-- Sun rays -->
+                  <line x1="1" y1="12" x2="3" y2="12" stroke-linecap="round"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-linecap="round"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-linecap="round"></line>
+                  <line x1="12" y1="1" x2="12" y2="3" stroke-linecap="round"></line>
+                  <line x1="12" y1="21" x2="12" y2="23" stroke-linecap="round"></line>
+                  <!-- Circle -->
+                  <circle cx="12" cy="12" r="5"></circle>
+                </svg>
+                <!-- Half sun/moon icon for medium theme -->
+                <svg v-else-if="th.icon === 'half'" viewBox="0 0 24 24" class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <!-- Sun rays only on left side and top/bottom -->
+                  <line x1="1" y1="12" x2="3" y2="12" stroke-linecap="round"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-linecap="round"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-linecap="round"></line>
+                  <line x1="12" y1="1" x2="12" y2="3" stroke-linecap="round"></line>
+                  <line x1="12" y1="21" x2="12" y2="23" stroke-linecap="round"></line>
+                  <!-- Main circle -->
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <!-- Left half filled (sun) -->
+                  <path d="M 12 7 A 5 5 0 0 0 12 17 L 12 7" fill="currentColor" opacity="0.8"></path>
+                  <!-- Right half empty (moon) -->
+                  <path d="M 12 7 A 5 5 0 0 1 12 17 L 12 7" fill="none"></path>
+                </svg>
+                <!-- Moon icon for dark theme -->
+                <svg v-else-if="th.icon === 'moon'" viewBox="0 0 24 24" class="w-5 h-5 fill-current text-cyan-400">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -175,39 +304,38 @@ const projects = [
     <header id="hero" class="min-h-screen flex items-center justify-center relative px-6 pt-20">
       <div class="max-w-5xl mx-auto text-center">
         <p class="animate-in stagger-1 code-font text-cyan-400 text-sm md:text-base mb-4 tracking-widest">
-          // WELCOME TO MY PORTFOLIO
+          {{ t('hero.welcome') }}
         </p>
         <h1
           id="developer-name"
           class="animate-in stagger-2 text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
-          Adrián <span class="gradient-text">Pérez</span>
+          {{ t('hero.nameFirst') }} <span class="gradient-text">{{ t('hero.nameLast') }}</span>
         </h1>
         <h2
           id="hero-title"
           class="animate-in stagger-3 text-2xl md:text-3xl lg:text-4xl text-gray-400 font-light mb-8"
         >
-          Full-Stack Developer
+          {{ t('hero.title') }}
         </h2>
         <p
           id="hero-subtitle"
           class="animate-in stagger-4 text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Crafting elegant digital experiences with modern web technologies. Passionate about clean
-          code, scalable architecture, and intuitive design.
+          {{ t('hero.subtitle') }}
         </p>
         <div class="animate-in flex flex-col sm:flex-row gap-4 justify-center" style="animation-delay: 0.5s;">
           <a
             href="#projects"
             class="glow-btn bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all"
           >
-            View Projects
+            {{ t('hero.primaryCta') }}
           </a>
           <a
             href="#contact"
             class="glow-btn bg-transparent border border-gray-600 px-8 py-4 rounded-full font-semibold hover:border-cyan-500 transition-all"
           >
-            Get In Touch
+            {{ t('hero.secondaryCta') }}
           </a>
         </div>
       </div>
@@ -227,15 +355,14 @@ const projects = [
       <div class="max-w-6xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">// ABOUT ME</p>
+            <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">
+              {{ t('about.kicker') }}
+            </p>
             <h2 class="text-4xl md:text-5xl font-bold mb-8">
-              Building the <span class="gradient-text">Future</span>
+              {{ t('about.titleA') }} <span class="gradient-text">{{ t('about.titleB') }}</span>
             </h2>
             <p id="about-text" class="text-gray-400 text-lg leading-relaxed mb-6">
-              With over 5 years of experience in full-stack development, I specialize in building
-              scalable web applications that combine powerful backend systems with beautiful,
-              responsive frontends. I believe in writing clean, maintainable code that stands the test
-              of time.
+              {{ t('about.body') }}
             </p>
             <div class="flex gap-4">
               <StatCard
@@ -250,30 +377,30 @@ const projects = [
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
             <div class="relative">
               <div class="code-font text-sm">
-                <p class="text-gray-500 mb-2">// developer.js</p>
+                <p class="text-gray-500 mb-2">{{ t('about.code.comment') }}</p>
                 <p>
                   <span class="text-purple-400">const</span>
                   <span class="text-cyan-400"> developer</span> = {
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">name</span>:
-                  <span class="text-amber-400"> "Adrián Pérez"</span>,
+                  <span class="text-green-400">{{ t('about.code.nameLabel') }}</span>:
+                  <span class="text-amber-400"> "{{ t('about.code.nameValue') }}"</span>,
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">role</span>:
-                  <span class="text-amber-400"> "Full-Stack Dev"</span>,
+                  <span class="text-green-400">{{ t('about.code.roleLabel') }}</span>:
+                  <span class="text-amber-400"> "{{ t('about.code.roleValue') }}"</span>,
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">passion</span>:
-                  <span class="text-amber-400"> "Clean Code"</span>,
+                  <span class="text-green-400">{{ t('about.code.passionLabel') }}</span>:
+                  <span class="text-amber-400"> "{{ t('about.code.passionValue') }}"</span>,
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">coffee</span>:
-                  <span class="text-cyan-400"> true</span>,
+                  <span class="text-green-400">{{ t('about.code.coffeeLabel') }}</span>:
+                  <span class="text-cyan-400"> {{ t('about.code.trueValue') }}</span>,
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">available</span>:
-                  <span class="text-cyan-400"> true</span>
+                  <span class="text-green-400">{{ t('about.code.availableLabel') }}</span>:
+                  <span class="text-cyan-400"> {{ t('about.code.trueValue') }}</span>
                 </p>
                 <p>};</p>
               </div>
@@ -286,9 +413,11 @@ const projects = [
     <section id="tech" class="py-32 px-6 relative">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">// TECH STACK</p>
+          <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">
+            {{ t('tech.kicker') }}
+          </p>
           <h2 class="text-4xl md:text-5xl font-bold">
-            Tools I <span class="gradient-text">Master</span>
+            {{ t('tech.titleA') }} <span class="gradient-text">{{ t('tech.titleB') }}</span>
           </h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -306,9 +435,11 @@ const projects = [
     <section id="projects" class="py-32 px-6 relative">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">// FEATURED PROJECTS</p>
+          <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">
+            {{ t('projects.kicker') }}
+          </p>
           <h2 class="text-4xl md:text-5xl font-bold">
-            Recent <span class="gradient-text">Work</span>
+            {{ t('projects.titleA') }} <span class="gradient-text">{{ t('projects.titleB') }}</span>
           </h2>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -321,6 +452,8 @@ const projects = [
             :gradient-class="project.gradientClass"
             :icon-class="project.iconClass"
             :icon-paths="project.iconPaths"
+            :code-label="projectLabels.code"
+            :demo-label="projectLabels.demo"
           />
         </div>
       </div>
@@ -328,13 +461,14 @@ const projects = [
 
     <section id="contact" class="py-32 px-6 relative">
       <div class="max-w-4xl mx-auto text-center">
-        <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">// GET IN TOUCH</p>
+        <p class="code-font text-cyan-400 text-sm mb-4 tracking-widest">
+          {{ t('contact.kicker') }}
+        </p>
         <h2 class="text-4xl md:text-5xl font-bold mb-8">
-          Let's Build <span class="gradient-text">Together</span>
+          {{ t('contact.titleA') }} <span class="gradient-text">{{ t('contact.titleB') }}</span>
         </h2>
         <p class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
-          Have a project in mind? I'm always open to discussing new opportunities, creative ideas, or
-          ways to bring your vision to life.
+          {{ t('contact.body') }}
         </p>
         <div class="glass-card rounded-3xl p-8 md:p-12">
           <div class="grid md:grid-cols-3 gap-8 mb-10">
@@ -351,7 +485,7 @@ const projects = [
                   />
                 </svg>
               </div>
-              <p class="text-gray-500 text-sm mb-1">Email</p>
+              <p class="text-gray-500 text-sm mb-1">{{ t('contact.cards.email') }}</p>
               <p id="contact-email" class="text-white font-medium">adrian@devmail.com</p>
             </div>
             <div class="text-center">
@@ -373,8 +507,8 @@ const projects = [
                   />
                 </svg>
               </div>
-              <p class="text-gray-500 text-sm mb-1">Location</p>
-              <p class="text-white font-medium">Madrid, Spain</p>
+              <p class="text-gray-500 text-sm mb-1">{{ t('contact.cards.location') }}</p>
+              <p class="text-white font-medium">{{ t('contact.cards.locationValue') }}</p>
             </div>
             <div class="text-center">
               <div
@@ -389,8 +523,8 @@ const projects = [
                   />
                 </svg>
               </div>
-              <p class="text-gray-500 text-sm mb-1">Availability</p>
-              <p class="text-white font-medium">Open to Work</p>
+              <p class="text-gray-500 text-sm mb-1">{{ t('contact.cards.availability') }}</p>
+              <p class="text-white font-medium">{{ t('contact.cards.availabilityValue') }}</p>
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -406,7 +540,7 @@ const projects = [
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              Send Email
+              {{ t('contact.cta.email') }}
             </a>
             <a
               href="#"
@@ -419,7 +553,7 @@ const projects = [
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
                 />
               </svg>
-              GitHub
+              {{ t('contact.cta.github') }}
             </a>
             <a
               href="#"
@@ -432,7 +566,7 @@ const projects = [
                   d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
                 />
               </svg>
-              LinkedIn
+              {{ t('contact.cta.linkedin') }}
             </a>
           </div>
         </div>
@@ -441,8 +575,8 @@ const projects = [
 
     <footer class="py-8 px-6 border-t border-gray-800/50">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-sm">© 2026 Adrián Pérez. All rights reserved.</p>
-        <p class="code-font text-gray-600 text-xs">Built with 💙 and lots of ☕</p>
+        <p class="text-gray-500 text-sm">{{ t('footer.copyright') }}</p>
+        <p class="code-font text-gray-600 text-xs">{{ t('footer.tagline') }}</p>
       </div>
     </footer>
   </div>

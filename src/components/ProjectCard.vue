@@ -23,6 +23,14 @@ defineProps({
   iconPaths: {
     type: Array,
     default: () => []
+  },
+  codeLabel: {
+    type: String,
+    default: 'View Code'
+  },
+  demoLabel: {
+    type: String,
+    default: 'Live Demo'
   }
 })
 </script>
@@ -73,13 +81,13 @@ defineProps({
           class="glow-btn flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 py-2 rounded-xl text-sm font-medium"
           type="button"
         >
-          View Code
+          {{ codeLabel }}
         </button>
         <button
           class="flex-1 border border-gray-700 py-2 rounded-xl text-sm font-medium hover:border-cyan-500 transition-colors"
           type="button"
         >
-          Live Demo
+          {{ demoLabel }}
         </button>
       </div>
     </div>
