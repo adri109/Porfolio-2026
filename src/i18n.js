@@ -25,8 +25,8 @@ const messages = {
     },
     hero: {
       welcome: '// WELCOME TO MY PORTFOLIO',
-      nameFirst: 'Adrian',
-      nameLast: 'Perez',
+      nameFirst: 'Adrián',
+      nameLast: 'Pérez',
       title: 'Full-Stack Developer',
       subtitle:
         'Crafting elegant digital experiences with modern web technologies. Passionate about clean code, scalable architecture, and intuitive design.',
@@ -35,24 +35,34 @@ const messages = {
     },
     about: {
       kicker: '// ABOUT ME',
-      titleA: 'Building the',
-      titleB: 'Future',
+      titleA: 'Code with',
+      titleB: 'Purpose',
       body:
-        'With over 5 years of experience in full-stack development, I specialize in building scalable web applications that combine powerful backend systems with beautiful, responsive frontends. I believe in writing clean, maintainable code that stands the test of time.',
+        'I transform complex ideas into functional digital experiences. My goal is to help businesses and entrepreneurs bring their visions to life through solid full-stack development, always prioritizing performance optimization and a clean, maintainable code architecture.',
       stats: {
-        projects: 'Projects',
-        years: 'Years Exp',
-        clients: 'Clients'
+        modernStack: {
+          value: 'Modern Stack',
+          label: 'Main Focus'
+        },
+        vueExperience: {
+          value: '2 Years',
+          label: 'Experience in Vue'
+        },
+        git: {
+          value: 'Git Workflow',
+          label: 'Version Control'
+        }
       },
       code: {
         comment: '// developer.js',
         nameLabel: 'name',
-        nameValue: 'Adrian Perez',
+        nameValue: 'Adrián Pérez',
         roleLabel: 'role',
         roleValue: 'Full-Stack Dev',
         passionLabel: 'passion',
         passionValue: 'Clean Code',
-        coffeeLabel: 'coffee',
+        skillsLabel: 'skills',
+        skillsValue: '["Problem Solver", "Communication", "Teamwork"]',
         availableLabel: 'available',
         trueValue: 'true'
       }
@@ -113,7 +123,7 @@ const messages = {
         email: 'Email',
         location: 'Location',
         availability: 'Availability',
-        locationValue: 'Madrid, Spain',
+        locationValue: 'Zaragoza, Aragón, Spain',
         availabilityValue: 'Open to Work'
       },
       cta: {
@@ -123,7 +133,7 @@ const messages = {
       }
     },
     footer: {
-      copyright: '© 2026 Adrian Perez. All rights reserved.',
+      copyright: '© 2026 Adrián Pérez. All rights reserved.',
       tagline: 'Built with 💙 and lots of ☕'
     }
   },
@@ -136,8 +146,8 @@ const messages = {
     },
     hero: {
       welcome: '// BIENVENIDO A MI PORTFOLIO',
-      nameFirst: 'Adrian',
-      nameLast: 'Perez',
+      nameFirst: 'Adrián',
+      nameLast: 'Pérez',
       title: 'Desarrollador Full-Stack',
       subtitle:
         'Creando experiencias digitales elegantes con tecnologias web modernas. Apasionado por el codigo limpio, la arquitectura escalable y el diseño intuitivo.',
@@ -146,24 +156,34 @@ const messages = {
     },
     about: {
       kicker: '// SOBRE MI',
-      titleA: 'Construyendo el',
-      titleB: 'Futuro',
+      titleA: 'Código con',
+      titleB: 'Propósito',
       body:
-        'Con mas de 5 años de experiencia en desarrollo full-stack, me especializo en crear aplicaciones escalables que combinan backends potentes con frontends atractivos y responsivos. Creo en escribir codigo limpio y mantenible que resista el paso del tiempo.',
+        'Transformo ideas complejas en experiencias digitales funcionales. Mi objetivo es ayudar a negocios y emprendedores a aterrizar sus visiones mediante un desarrollo Full-Stack sólido, priorizando siempre la optimización del rendimiento y una arquitectura de código limpia y fácil de mantener.',
       stats: {
-        projects: 'Proyectos',
-        years: 'Años Exp',
-        clients: 'Clientes'
+        modernStack: {
+          value: 'Modern Stack',
+          label: 'Enfoque principal'
+        },
+        vueExperience: {
+          value: '2 años',
+          label: 'de experiencia en Vue'
+        },
+        git: {
+          value: 'Git y GitHub',
+          label: 'Control de versiones'
+        }
       },
       code: {
         comment: '// developer.js',
         nameLabel: 'nombre',
-        nameValue: 'Adrian Perez',
+        nameValue: 'Adrián Pérez',
         roleLabel: 'rol',
         roleValue: 'Full-Stack Dev',
         passionLabel: 'pasion',
         passionValue: 'Codigo limpio',
-        coffeeLabel: 'cafe',
+        skillsLabel: 'skills',
+        skillsValue: '["Resolución de problemas", "Comunicación", "Trabajo en equipo"]',
         availableLabel: 'disponible',
         trueValue: 'true'
       }
@@ -224,7 +244,7 @@ const messages = {
         email: 'Email',
         location: 'Ubicacion',
         availability: 'Disponibilidad',
-        locationValue: 'Madrid, Espana',
+        locationValue: 'Zaragoza, Aragón, España',
         availabilityValue: 'Disponible'
       },
       cta: {
@@ -234,7 +254,7 @@ const messages = {
       }
     },
     footer: {
-      copyright: '© 2026 Adrian Perez. Todos los derechos reservados.',
+      copyright: '2026 Adrián Pérez',
       tagline: 'Hecho con 💙 y mucho ☕'
     }
   }

@@ -40,14 +40,23 @@ const themes = [
 ]
 
 const statsBase = [
-  { value: '50+', labelKey: 'about.stats.projects' },
-  { value: '5+', labelKey: 'about.stats.years' },
-  { value: '30+', labelKey: 'about.stats.clients' }
+  {
+    valueKey: 'about.stats.modernStack.value',
+    labelKey: 'about.stats.modernStack.label'
+  },
+  {
+    valueKey: 'about.stats.vueExperience.value',
+    labelKey: 'about.stats.vueExperience.label'
+  },
+  {
+    valueKey: 'about.stats.git.value',
+    labelKey: 'about.stats.git.label'
+  }
 ]
 
 const stats = computed(() =>
   statsBase.map((item) => ({
-    value: item.value,
+    value: t(item.valueKey),
     label: t(item.labelKey)
   }))
 )
@@ -310,7 +319,7 @@ const isActiveLocale = (code) => locale.value === code
           id="developer-name"
           class="animate-in stagger-2 text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
-          {{ t('hero.nameFirst') }} <span class="gradient-text">{{ t('hero.nameLast') }}</span>
+          Adrián <span class="gradient-text">Pérez</span>
         </h1>
         <h2
           id="hero-title"
@@ -384,7 +393,7 @@ const isActiveLocale = (code) => locale.value === code
                 </p>
                 <p class="pl-4">
                   <span class="text-green-400">{{ t('about.code.nameLabel') }}</span>:
-                  <span class="text-amber-400"> "{{ t('about.code.nameValue') }}"</span>,
+                  <span class="text-amber-400"> "Adrián Pérez"</span>,
                 </p>
                 <p class="pl-4">
                   <span class="text-green-400">{{ t('about.code.roleLabel') }}</span>:
@@ -395,8 +404,8 @@ const isActiveLocale = (code) => locale.value === code
                   <span class="text-amber-400"> "{{ t('about.code.passionValue') }}"</span>,
                 </p>
                 <p class="pl-4">
-                  <span class="text-green-400">{{ t('about.code.coffeeLabel') }}</span>:
-                  <span class="text-cyan-400"> {{ t('about.code.trueValue') }}</span>,
+                  <span class="text-green-400">{{ t('about.code.skillsLabel') }}</span>:
+                  <span class="text-amber-400"> {{ t('about.code.skillsValue') }}</span>,
                 </p>
                 <p class="pl-4">
                   <span class="text-green-400">{{ t('about.code.availableLabel') }}</span>:
@@ -486,7 +495,7 @@ const isActiveLocale = (code) => locale.value === code
                 </svg>
               </div>
               <p class="text-gray-500 text-sm mb-1">{{ t('contact.cards.email') }}</p>
-              <p id="contact-email" class="text-white font-medium">adrian@devmail.com</p>
+              <p id="contact-email" class="text-white font-medium">adriperezcaspe@icloud.com</p>
             </div>
             <div class="text-center">
               <div
@@ -529,7 +538,7 @@ const isActiveLocale = (code) => locale.value === code
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:adrian@devmail.com"
+              href="mailto:adriperezcaspe@icloud.com"
               class="glow-btn bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -543,7 +552,7 @@ const isActiveLocale = (code) => locale.value === code
               {{ t('contact.cta.email') }}
             </a>
             <a
-              href="#"
+              href="https://github.com/adri109"
               target="_blank"
               rel="noopener noreferrer"
               class="glow-btn bg-transparent border border-gray-600 px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 hover:border-cyan-500"
@@ -556,7 +565,7 @@ const isActiveLocale = (code) => locale.value === code
               {{ t('contact.cta.github') }}
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/adriperezdev/"
               target="_blank"
               rel="noopener noreferrer"
               class="glow-btn bg-transparent border border-gray-600 px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 hover:border-cyan-500"
@@ -574,9 +583,8 @@ const isActiveLocale = (code) => locale.value === code
     </section>
 
     <footer class="py-8 px-6 border-t border-gray-800/50">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-sm">{{ t('footer.copyright') }}</p>
-        <p class="code-font text-gray-600 text-xs">{{ t('footer.tagline') }}</p>
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="code-font text-gray-600 text-xs">Adrián Pérez • {{ t('footer.tagline') }}</p>
       </div>
     </footer>
   </div>
