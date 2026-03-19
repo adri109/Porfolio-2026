@@ -102,73 +102,57 @@ const techStack = [
 
 const projectsBase = [
   {
-    key: 'cloudsync',
-    tags: ['Vue.js', 'Node.js'],
+    key: 'horarios',
+    tags: ['Vue.js', 'Node.js', 'TypeScript', 'Prisma'],
+    repoUrl: 'https://github.com/adri109/Horarios',
+    demoUrl: 'https://horarios-six.vercel.app',
     gradientClass: 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20',
     iconClass: 'text-cyan-400/30',
     iconPaths: [
       {
-        d: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+        d: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
         strokeWidth: '1'
       }
     ]
   },
   {
-    key: 'fintrack',
-    tags: ['React', 'Prisma'],
-    gradientClass: 'bg-gradient-to-br from-purple-500/20 to-pink-600/20',
-    iconClass: 'text-purple-400/30',
-    iconPaths: [
-      {
-        d: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
-        strokeWidth: '1'
-      }
-    ]
-  },
-  {
-    key: 'devops',
-    tags: ['Node.js', 'Docker'],
-    gradientClass: 'bg-gradient-to-br from-emerald-500/20 to-teal-600/20',
-    iconClass: 'text-emerald-400/30',
-    iconPaths: [
-      {
-        d: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
-        strokeWidth: '1'
-      }
-    ]
-  },
-  {
-    key: 'teamflow',
-    tags: ['Vue.js', 'GraphQL'],
+    key: 'imposicion',
+    tags: ['Python'],
+    repoUrl: 'https://github.com/adri109/Software-de-Imposici-n-Autom-tica',
+    demoUrl: null,
     gradientClass: 'bg-gradient-to-br from-amber-500/20 to-orange-600/20',
     iconClass: 'text-amber-400/30',
     iconPaths: [
       {
-        d: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+        d: 'M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z',
         strokeWidth: '1'
       }
     ]
   },
   {
-    key: 'healthhub',
-    tags: ['React', 'Node.js'],
-    gradientClass: 'bg-gradient-to-br from-rose-500/20 to-red-600/20',
-    iconClass: 'text-rose-400/30',
+    key: 'riotApi',
+    tags: ['Node.js', 'JavaScript'],
+    repoUrl: 'https://github.com/adri109/RiotApiTesting',
+    demoUrl: null,
+    gradientClass: 'bg-gradient-to-br from-purple-500/20 to-pink-600/20',
+    iconClass: 'text-purple-400/30',
     iconPaths: [
       {
-        d: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+        d: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z',
         strokeWidth: '1'
       }
     ]
   },
   {
-    key: 'aiReviewer',
-    tags: ['Python', 'TensorFlow'],
-    gradientClass: 'bg-gradient-to-br from-indigo-500/20 to-violet-600/20',
-    iconClass: 'text-indigo-400/30',
+    key: 'catalogo',
+    tags: ['Python'],
+    repoUrl: 'https://github.com/adri109/Catalogo',
+    demoUrl: null,
+    gradientClass: 'bg-gradient-to-br from-emerald-500/20 to-teal-600/20',
+    iconClass: 'text-emerald-400/30',
     iconPaths: [
       {
-        d: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+        d: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
         strokeWidth: '1'
       }
     ]
@@ -451,7 +435,7 @@ const isActiveLocale = (code) => locale.value === code
             {{ t('projects.titleA') }} <span class="gradient-text">{{ t('projects.titleB') }}</span>
           </h2>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 gap-8">
           <ProjectCard
             v-for="project in projects"
             :key="project.title"
@@ -461,6 +445,8 @@ const isActiveLocale = (code) => locale.value === code
             :gradient-class="project.gradientClass"
             :icon-class="project.iconClass"
             :icon-paths="project.iconPaths"
+            :repo-url="project.repoUrl"
+            :demo-url="project.demoUrl"
             :code-label="projectLabels.code"
             :demo-label="projectLabels.demo"
           />

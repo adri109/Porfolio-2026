@@ -77,35 +77,25 @@ const messages = {
       titleA: 'Recent',
       titleB: 'Work',
       items: {
-        cloudsync: {
-          title: 'CloudSync Dashboard',
+        horarios: {
+          title: 'Salon Management System',
           description:
-            'Real-time analytics dashboard with WebSocket integration and dynamic data visualization.'
+            'Full-stack web app for beauty salons: appointments, clients, staff, reports, email/WhatsApp notifications, and a public booking page. Multi-tenant with JWT auth.'
         },
-        fintrack: {
-          title: 'FinTrack Mobile',
+        imposicion: {
+          title: 'Auto Imposition Tool',
           description:
-            'Personal finance tracking app with AI-powered spending insights and budget recommendations.'
+            'Python script that takes individual book pages and automatically arranges them with print-ready imposition, saving time over traditional tools like InDesign.'
         },
-        devops: {
-          title: 'DevOps Pipeline',
+        riotApi: {
+          title: 'LoL Match Analyzer',
           description:
-            'Automated CI/CD pipeline with containerized microservices and zero-downtime deployments.'
+            'League of Legends match analyzer built with Node.js that consumes the Riot Games API to fetch and display game statistics.'
         },
-        teamflow: {
-          title: 'TeamFlow',
+        catalogo: {
+          title: 'Auto Catalog Generator',
           description:
-            'Collaborative project management platform with real-time updates and Kanban boards.'
-        },
-        healthhub: {
-          title: 'HealthHub API',
-          description:
-            'RESTful health tracking API with OAuth2 authentication and comprehensive documentation.'
-        },
-        aiReviewer: {
-          title: 'AI Code Reviewer',
-          description:
-            'Machine learning model that analyzes code quality and suggests improvements automatically.'
+            'Python tool that reads images from a folder and generates a print-ready catalog with consistent layout, typography, and styling across every page.'
         }
       },
       cta: {
@@ -198,35 +188,25 @@ const messages = {
       titleA: 'Trabajo',
       titleB: 'Reciente',
       items: {
-        cloudsync: {
-          title: 'CloudSync Dashboard',
+        horarios: {
+          title: 'Sistema de Gestión para Salones',
           description:
-            'Dashboard de analitica en tiempo real con integracion WebSocket y visualizacion dinamica.'
+            'App web full-stack para salones de belleza: citas, clientes, personal, informes, notificaciones por email/WhatsApp y página pública de reservas. Multi-tenant con autenticación JWT.'
         },
-        fintrack: {
-          title: 'FinTrack Mobile',
+        imposicion: {
+          title: 'Imposición Automática',
           description:
-            'App de finanzas personales con insights de gasto impulsados por IA y recomendaciones.'
+            'Script en Python que toma hojas sueltas de un libro y las ordena automáticamente con imposición lista para imprenta, ahorrando tiempo frente a herramientas como InDesign.'
         },
-        devops: {
-          title: 'DevOps Pipeline',
+        riotApi: {
+          title: 'Analizador de Partidas LoL',
           description:
-            'Pipeline CI/CD automatizado con microservicios en contenedores y despliegues sin downtime.'
+            'Analizador de partidas de League of Legends hecho con Node.js que consume la API de Riot Games para obtener y mostrar estadísticas de juego.'
         },
-        teamflow: {
-          title: 'TeamFlow',
+        catalogo: {
+          title: 'Generador de Catálogos',
           description:
-            'Plataforma colaborativa de gestion de proyectos con actualizaciones en tiempo real y Kanban.'
-        },
-        healthhub: {
-          title: 'HealthHub API',
-          description:
-            'API REST de salud con autenticacion OAuth2 y documentacion completa.'
-        },
-        aiReviewer: {
-          title: 'AI Code Reviewer',
-          description:
-            'Modelo de machine learning que analiza calidad de codigo y sugiere mejoras automaticamente.'
+            'Herramienta en Python que lee imágenes de una carpeta y genera un catálogo listo para imprimir con diseño, tipografía y estilo consistentes en cada página.'
         }
       },
       cta: {

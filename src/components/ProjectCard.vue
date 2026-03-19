@@ -24,6 +24,14 @@ defineProps({
     type: Array,
     default: () => []
   },
+  repoUrl: {
+    type: String,
+    default: null
+  },
+  demoUrl: {
+    type: String,
+    default: null
+  },
   codeLabel: {
     type: String,
     default: 'View Code'
@@ -77,18 +85,24 @@ defineProps({
         {{ description }}
       </p>
       <div class="flex gap-3">
-        <button
-          class="glow-btn flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 py-2 rounded-xl text-sm font-medium"
-          type="button"
+        <a
+          v-if="repoUrl"
+          :href="repoUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="glow-btn flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 py-2 rounded-xl text-sm font-medium text-center"
         >
           {{ codeLabel }}
-        </button>
-        <button
-          class="flex-1 border border-gray-700 py-2 rounded-xl text-sm font-medium hover:border-cyan-500 transition-colors"
-          type="button"
+        </a>
+        <a
+          v-if="demoUrl"
+          :href="demoUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 border border-gray-700 py-2 rounded-xl text-sm font-medium hover:border-cyan-500 transition-colors text-center"
         >
           {{ demoLabel }}
-        </button>
+        </a>
       </div>
     </div>
   </article>
